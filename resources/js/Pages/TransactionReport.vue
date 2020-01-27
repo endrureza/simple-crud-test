@@ -55,7 +55,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <InertiaLink href="/transaction/export" :data="query" :class="{'btn btn-secondary btn-sm': true, 'disabled': _.isEmpty(details)}" preserve-state>Export to Excel</InertiaLink>
+                <a :href="'/transaction/export'+urlParam" :class="{'btn btn-secondary btn-sm': true, 'disabled': _.isEmpty(details)}" preserve-state>Export to Excel</a>
                 <a href="javascript:void(0)" class="btn btn-secondary btn-sm ml-3" @click="window.print()">Print</a>
             </div>
         </div>
@@ -79,8 +79,12 @@
                     to: '',
                     cluster: '',
                     type: ''
-                }
+                },
+                urlParam: ""
             }
+        },
+        mounted() {
+            this.urlParam = "/?from="+this.query.from+"&to="+this.query.to+"&cluster="+this.query.cluster+"&type="+this.query.type;
         }
     }
 </script>

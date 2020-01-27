@@ -4,11 +4,12 @@ namespace App\Exports;
 
 use App\TdSalesDetail;
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Excel;
 
-class TransactionExport implements FromQuery, Responsable
+class TransactionExport implements FromView, Responsable
 {
     use Exportable;
 
@@ -25,7 +26,7 @@ class TransactionExport implements FromQuery, Responsable
         $this->query = $query;
     }
 
-    public function query()
+    public function view(): View
     {
         $query = TdSalesDetail::query()->with([
             'transaction.customer',
@@ -65,6 +66,8 @@ class TransactionExport implements FromQuery, Responsable
             });
         }
 
-        return $query;
+        return view('report', [
+            'details' => $query->get()
+        ]);
     }
 }

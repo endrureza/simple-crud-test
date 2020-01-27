@@ -15,6 +15,7 @@
 2. Copy `.env.example` to `.env` and adjust variable value to your local setting
 3. Install composer dependency
 4. Install npm dependency
-5. Run `php artisan serve`
-6. Go to `http://localhost:8000` on your browser
+5. Run `php artisan migrate && php artisan db:seed`
+6. Run `php artisan serve`
+7. Go to `http://localhost:8000` on your browser
 

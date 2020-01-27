@@ -2526,8 +2526,12 @@ __webpack_require__.r(__webpack_exports__);
         to: '',
         cluster: '',
         type: ''
-      }
+      },
+      urlParam: ""
     };
+  },
+  mounted: function mounted() {
+    this.urlParam = "/?from=" + this.query.from + "&to=" + this.query.to + "&cluster=" + this.query.cluster + "&type=" + this.query.type;
   }
 });
 
@@ -58399,42 +58403,36 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-12" },
-        [
-          _c(
-            "InertiaLink",
-            {
-              class: {
-                "btn btn-secondary btn-sm": true,
-                disabled: _vm._.isEmpty(_vm.details)
-              },
-              attrs: {
-                href: "/transaction/export",
-                data: _vm.query,
-                "preserve-state": ""
-              }
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "a",
+          {
+            class: {
+              "btn btn-secondary btn-sm": true,
+              disabled: _vm._.isEmpty(_vm.details)
             },
-            [_vm._v("Export to Excel")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-secondary btn-sm ml-3",
-              attrs: { href: "javascript:void(0)" },
-              on: {
-                click: function($event) {
-                  return _vm.window.print()
-                }
+            attrs: {
+              href: "/transaction/export" + _vm.urlParam,
+              "preserve-state": ""
+            }
+          },
+          [_vm._v("Export to Excel")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-secondary btn-sm ml-3",
+            attrs: { href: "javascript:void(0)" },
+            on: {
+              click: function($event) {
+                return _vm.window.print()
               }
-            },
-            [_vm._v("Print")]
-          )
-        ],
-        1
-      )
+            }
+          },
+          [_vm._v("Print")]
+        )
+      ])
     ])
   ])
 }
